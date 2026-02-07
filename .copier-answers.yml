@@ -1,0 +1,10 @@
+# Changes here will be overwritten by Copier. Do not edit manually.
+_commit: v0.2.21
+_src_path: gh:jlevy/simple-modern-uv
+package_author_email: dave.moran118@gmail.com
+package_author_name: Dave Moran
+package_description: A CLI tool that ingests, parses, filters, and summarizes server
+    log files
+package_github_org: DaveMoran
+package_module: cli_log_analyzer
+package_name: cli-log-analyzer
