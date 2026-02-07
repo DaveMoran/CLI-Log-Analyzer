@@ -50,6 +50,7 @@ dev = [
     "rich>=14.2.0",
     "basedpyright>=1.37.1",
     "funlog>=0.2.1",
+    "black",
 ]
 
 [project.scripts]
