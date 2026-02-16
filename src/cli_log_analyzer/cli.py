@@ -11,7 +11,10 @@ import asyncio
 
 async def main():
     await exercise_1()
-    results = await asyncio.gather(exercise_2_file1(), exercise_2_file2(), exercise_2_file3())
+    file_1 = "./sample_logs/access.log"
+    file_2 = "./sample_logs/error.log"
+    file_3 = "./sample_logs/app.log"
+    results = await asyncio.gather(read_file(file_1), read_file(file_2), read_file(file_3))
     print(results)
 
 
@@ -22,23 +25,8 @@ async def exercise_1():
     print("Initialization complete.")
 
 
-async def exercise_2_file1():
-    # Step 2: `asyncio.gather()` reading multiple files concurrently
-    with open("./sample_logs/access.log", "r") as f:
-        data = f.read()
-    return data
-
-
-async def exercise_2_file2():
-    # Step 2: `asyncio.gather()` reading multiple files concurrently
-    with open("./sample_logs/error.log", "r") as f:
-        data = f.read()
-    return data
-
-
-async def exercise_2_file3():
-    # Step 2: `asyncio.gather()` reading multiple files concurrently
-    with open("./sample_logs/app.log", "r") as f:
+async def read_file(file_path):
+    with open(file_path, "r") as f:
         data = f.read()
     return data
 
