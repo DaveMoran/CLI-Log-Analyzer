@@ -10,9 +10,14 @@ import asyncio
 
 
 async def main():
-    print("Hello before sleep")
-    await asyncio.sleep(5)
-    print("Hello after sleep")
+    await exercise_1()
+
+
+async def exercise_1():
+    # Step 1: Basic coroutine with `await asyncio.sleep()`
+    print("Starting the CLI Log Analyzer...")
+    await asyncio.sleep(1)  # Simulate some startup delay
+    print("Initialization complete.")
 
 
 if __name__ == "__main__":
