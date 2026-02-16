@@ -6,28 +6,40 @@ This is the main entry point for the CLI Log Analyzer project.
 - Write experimental script: `async for` with an async generator
 """
 
+from time import time, strftime, localtime
 import asyncio
 
 
 async def main():
     await exercise_1()
+
+    start_time = time()
     file_1 = "./sample_logs/access.log"
     file_2 = "./sample_logs/error.log"
     file_3 = "./sample_logs/app.log"
-    results = await asyncio.gather(read_file(file_1), read_file(file_2), read_file(file_3))
 
-    print(results)
+    await asyncio.gather(read_file(file_1), read_file(file_2), read_file(file_3))
+
+    end_time = time()
+    print(f"Reading all files concurrently took {end_time - start_time:.4f} seconds.")
 
     files = [file_1, file_2, file_3]
-    async for content in multi_read_rile(files):
-        print(content)
+
+    start_time = time()
+    async for content in multi_read_file(files):
+        print("Done!")
+    end_time = time()
+    print(f"Reading all files took {end_time - start_time:.4f} seconds.")
 
 
 async def exercise_1():
     # Step 1: Basic coroutine with `await asyncio.sleep()`
+    start_time = time()
     print("Starting the CLI Log Analyzer...")
     await asyncio.sleep(1)  # Simulate some startup delay
     print("Initialization complete.")
+    end_time = time()
+    print(f"Initialization took {end_time - start_time:.2f} seconds.")
 
 
 async def read_file(file_path):
