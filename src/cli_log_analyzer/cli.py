@@ -15,7 +15,12 @@ async def main():
     file_2 = "./sample_logs/error.log"
     file_3 = "./sample_logs/app.log"
     results = await asyncio.gather(read_file(file_1), read_file(file_2), read_file(file_3))
+
     print(results)
+
+    files = [file_1, file_2, file_3]
+    async for content in multi_read_rile(files):
+        print(content)
 
 
 async def exercise_1():
@@ -26,9 +31,16 @@ async def exercise_1():
 
 
 async def read_file(file_path):
+    # Step 2: `asyncio.gather()` reading multiple files concurrently
     with open(file_path, "r") as f:
         data = f.read()
     return data
+
+
+async def multi_read_rile(file_paths):
+    # Step 3: `async for` with an async generator
+    for file_path in file_paths:
+        yield await read_file(file_path)
 
 
 if __name__ == "__main__":
