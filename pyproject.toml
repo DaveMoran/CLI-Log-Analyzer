@@ -1,9 +1,7 @@
 # ---- Project Info and Dependencies ----
 
 [project.urls]
-Repository = "https://github.com/DaveMoran/cli-log-analyzer"
-# Homepage = "https://..."
-# Documentation = "https://..."
+Repository = "https://github.com/DaveMoran/CLI-Log-Analyzer"
 
 [project]
 name = "cli-log-analyzer"
@@ -13,7 +11,7 @@ authors = [
 ]
 readme = "README.md"
 license = "MIT"
-requires-python = ">=3.11,<4.0"
+requires-python = ">=3.12,<4.0"
 dynamic = ["version"]
 
 # https://pypi.org/classifiers/
@@ -26,7 +24,6 @@ classifiers = [
     "Operating System :: OS Independent",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
@@ -51,8 +48,9 @@ dev = [
     "ruff>=0.14.11",
     "codespell>=2.4.1",
     "rich>=14.2.0",
-    "basedpyright>=1.37.1",
+    "mypy>=1.15",
     "funlog>=0.2.1",
+    "black>=26.1.0",
 ]
 
 [project.scripts]
@@ -86,6 +84,10 @@ packages = ["src/cli_log_analyzer"]
 
 
 # ---- Settings ----
+
+[tool.black]
+line-length = 100
+target-version = ['py312']
 
 [tool.ruff]
 # Set as desired, typically 88 (black standard) or 100 (wide).
@@ -129,32 +131,12 @@ ignore = [
     "ISC002", # https://docs.astral.sh/ruff/rules/multi-line-implicit-string-concatenation/
 ]
 
-[tool.basedpyright]
-# BasedPyright currently seems like the best type checker option, much faster
-# than mypy and with a good extension for VSCode/Cursor.
-# https://marketplace.visualstudio.com/items?itemName=detachhead.basedpyright
-# https://docs.basedpyright.com/latest/configuration/config-files/#sample-pyprojecttoml-file
-include = ["src", "tests", "devtools"]
-# By default BasedPyright is very strict, so you almost certainly want to disable
-# some of the rules.
-# First, these turn off warnings about (yes) how you ignore warnings:
-reportIgnoreCommentWithoutRule = false
-reportUnnecessaryTypeIgnoreComment = false
-# A few typically noisy warnings are next.
-# How many you enable is up to you. The first few are off by default, but you can
-# comment/uncomment these as desired:
-reportMissingTypeStubs = false
-reportUnusedCallResult = false
-reportAny = false
-reportExplicitAny = false
-reportImplicitStringConcatenation = false
-reportUnreachable = false
-# reportPrivateImportUsage = false
-# reportPrivateLocalImportUsage = false
-# reportMissingImports = false
-# reportUnnecessaryIsInstance = false
-# reportUnknownVariableType = false
-# reportUnknownArgumentType = false
+[tool.mypy]
+files = ["src", "tests"]
+strict = false
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
 
 [tool.codespell]
 # Add here as needed:
