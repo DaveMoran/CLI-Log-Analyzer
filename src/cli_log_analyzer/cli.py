@@ -37,7 +37,7 @@ async def read_file(file_path):
     return data
 
 
-async def multi_read_rile(file_paths):
+async def multi_read_file(file_paths):
     # Step 3: `async for` with an async generator
     for file_path in file_paths:
         yield await read_file(file_path)
