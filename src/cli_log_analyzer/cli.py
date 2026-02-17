@@ -9,6 +9,8 @@ This is the main entry point for the CLI Log Analyzer project.
 import asyncio
 from time import time
 
+import aiofiles
+
 
 async def main():
     await exercise_1()
@@ -50,8 +52,8 @@ async def exercise_1():
 
 async def read_file(file_path):
     # Step 2: `asyncio.gather()` reading multiple files concurrently
-    with open(file_path) as f:
-        data = f.read()
+    async with aiofiles.open(file_path) as f:
+        data = await f.read()
     return data
 
 
