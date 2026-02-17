@@ -6,8 +6,8 @@ This is the main entry point for the CLI Log Analyzer project.
 - Write experimental script: `async for` with an async generator
 """
 
-from time import time
 import asyncio
+from time import time
 
 
 async def main():
@@ -27,7 +27,7 @@ async def main():
 
     start_time = time()
     async for content in multi_read_file(files):
-        print("Done!")
+        print(f"Read {len(content)} characters from a file.")
     end_time = time()
     print(f"Reading all files took {end_time - start_time:.4f} seconds.")
 
@@ -50,7 +50,7 @@ async def exercise_1():
 
 async def read_file(file_path):
     # Step 2: `asyncio.gather()` reading multiple files concurrently
-    with open(file_path, "r") as f:
+    with open(file_path) as f:
         data = f.read()
     return data
 
@@ -62,7 +62,7 @@ async def multi_read_file(file_paths):
 
 
 def read_file_sync(file_path):
-    with open(file_path, "r") as f:
+    with open(file_path) as f:
         data = f.read()
     return data
 
