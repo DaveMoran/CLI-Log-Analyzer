@@ -55,3 +55,20 @@ class AggregationResult:
     def __init__(self, logs):
         self.logs = logs
         self.report = {}
+
+
+class PipelineConfig:
+    """
+    Creates a report based on the collection of logs passed through
+
+    Parameters:
+    -----------
+      spacer:     check if we use a new line or spaced line for separation
+      file_type:  type of file to parse (JSON, XML, CLF)
+      filter:     filter to be passed through to LogFilter
+    """
+
+    def __init__(self, spacer, file_type, filter):
+        self.spacer = spacer
+        self.file_type = file_type
+        self.filter = filter
