@@ -12,7 +12,7 @@ class LogEntry:
 
     Parameters:
     -----------
-      timestamp: the date/time that the log occured
+      timestamp: the date/time that the log occurred
       level:     the level of severity of the log entry
       source:    file and line number that the log originated from
       message:   text that was received with the log
