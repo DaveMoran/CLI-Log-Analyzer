@@ -18,3 +18,9 @@ class LogFilter:
     def __init__(self, logs, filter):
         self.logs = logs
         self.filter = filter
+
+
+class AggregationResult:
+    def __init__(self, logs):
+        self.logs = logs
+        self.report = {}
