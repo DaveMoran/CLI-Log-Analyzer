@@ -2,6 +2,8 @@
 Different datamodels used in the CLI Log Analyzer project.
 """
 
+from datetime import datetime
+
 from dateutil import parser
 
 
@@ -19,12 +21,12 @@ class LogEntry:
       metadata:  additional information to be saved along each entry
     """
 
-    def __init__(self, timestamp, level, source, message, metadata):
-        self.timestamp = parser.parse(timestamp)
-        self.level = level
-        self.source = source
-        self.message = message
-        self.metadata = metadata
+    def __init__(self, timestamp: str, level: str, source: str, message: str, metadata: object):
+        self.timestamp: datetime = parser.parse(timestamp)
+        self.level: str = level
+        self.source: str = source
+        self.message: str = message
+        self.metadata: object = metadata
 
 
 class LogFilter:
