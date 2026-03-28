@@ -45,7 +45,7 @@ This class will be the orchestrator for the entire flow. The way this will work 
 
 ```mermaid
 flowchart TD
-    A[CLI-Log-Analyzer] -->|User Input| B(PiplineConfig)
+    A[CLI-Log-Analyzer] -->|User Input| B(PipelineConfig)
     B --> |Parse individual entries| C{LogEntry}
     C --> |if filter flag used| D[LogFilter]
     C --> E[AggregationResult]
