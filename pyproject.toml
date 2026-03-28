@@ -38,6 +38,7 @@ classifiers = [
 dependencies = [
     "aiofiles>=25.1.0",
     "types-aiofiles>=25.1.0.20251011",
+    "python-dateutil>=2.9.0",
 ]
 
 
