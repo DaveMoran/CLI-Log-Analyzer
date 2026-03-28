@@ -1,6 +1,8 @@
 # Core Data Model
 
-## LogEntry class
+## Models
+
+### LogEntry class
 The LogEntry class will be used to create a normalized log entry regardless of how your source application is saving them. This class will take in the following parameters:
 - timestamp: The string used to store the date/time of the log event. The timestamp may include a timezone in it, if it does not then we will default to UTC-0
 - level: An enum used to determine the type of log we're storing (debug, info, warning, error, critical). These will be referenced from the default Pytrhon logging module
@@ -8,7 +10,7 @@ The LogEntry class will be used to create a normalized log entry regardless of h
 - message: The string that will display the message that was returned in the log.
 - metadata: An object that stores custom data for the logger to maintain, like a correlation-id or trace-id
 
-## LogFilter class
+### LogFilter class
 The LogFilter class will be used to take a custom filter and only return a list of log entries based on the existing params. For example, if you wanted to filter all of the Error logs from the multiple sources you've imported, then you could call 
 ```python
 error_logs = LogFilter(logs=custom_log_collection, level=ERROR)
@@ -19,7 +21,7 @@ If you wanted to filter by a custom metadata item like trace_id you could do the
 user_logs = LogFilter(logs=custom_log_collection, metadata={trace_id: 'abc123'})
 ```
 
-## AggregationResults class
+### AggregationResults class
 The Aggregation Results class creates a summary of the logs that remained after filtering and reports back the following:
 - total number of log entries
 - last 5 logs
@@ -28,8 +30,7 @@ The Aggregation Results class creates a summary of the logs that remained after 
 
 This will be extendable as user cases are developed
 
-## PipelineConfig
-
+### PipelineConfig
 This class will be the orchestrator for the entire flow. The way this will work is:
 1. A user will call the CLI tool and supply the file to parse and some flags
   1. --spacer: Boolean to see if we separate each log item via newline OR if there's a space between
@@ -39,3 +40,16 @@ This class will be the orchestrator for the entire flow. The way this will work 
 3. Each line will be fed into the LogEntry class based on the filetype flag
 4. Then, if the filter flag was sent it will run the logs through the LogFilter class
 5. Finally, the filtered logs will be run through the AggregationResult class and the results will be printed onto the console for the user to review.
+
+## Diagram
+
+```mermaid
+flowchart TD
+    A[CLI-Log-Analyzer] -->|User Input| B(PiplineConfig)
+    B --> |Parse individual entries| C{LogEntry}
+    C --> |if filter flag used| D[LogFilter]
+    C --> E[AggregationResult]
+    D --> E
+```
+
+[![](https://mermaid.ink/img/pako:eNpNkc1ugzAQhF_F2lMrQcRPIIRDpQRSKVIqVVV7acjBihfHEtjImLYJ5N3rQFt1T56d-caH7eGoGEIKZaU-jyeqDXnNC0nsrPbZbuvuFHdXklbnC-oDcd2H4a1FTbay6cxA1nfPoqmExEzJUvD7iVzfcmR4prpFIiQTH4J1tCIojRbYDiTrbe3GqvN1IrKJECUpRWVsf1lRTroW2UDyvQ0_juvD__Rmv-JcI6dGKPmCbVeZHz-ffHCAa8EgNbpDB2rUNb1J6G-xAswJaywgtU-GJbV8AYW8Wqyh8l2p-pfUquMnSEtatVZ1DaMGc0G5pvXfVqNkqDPVSQOp7yXR2AJpD19Wh9EsTpJomcRhkPiBNc-Qxv4sXMyXcRTHi0Uwj_2rA5fxW2-WWMNOFCyD0PNC3wFkwij9NF1rPNr1G5d-iv0?type=png)](https://mermaid.ai/live/edit#pako:eNpNkc1ugzAQhF_F2lMrQcRPIIRDpQRSKVIqVVV7acjBihfHEtjImLYJ5N3rQFt1T56d-caH7eGoGEIKZaU-jyeqDXnNC0nsrPbZbuvuFHdXklbnC-oDcd2H4a1FTbay6cxA1nfPoqmExEzJUvD7iVzfcmR4prpFIiQTH4J1tCIojRbYDiTrbe3GqvN1IrKJECUpRWVsf1lRTroW2UDyvQ0_juvD__Rmv-JcI6dGKPmCbVeZHz-ffHCAa8EgNbpDB2rUNb1J6G-xAswJaywgtU-GJbV8AYW8Wqyh8l2p-pfUquMnSEtatVZ1DaMGc0G5pvXfVqNkqDPVSQOp7yXR2AJpD19Wh9EsTpJomcRhkPiBNc-Qxv4sXMyXcRTHi0Uwj_2rA5fxW2-WWMNOFCyD0PNC3wFkwij9NF1rPNr1G5d-iv0)
