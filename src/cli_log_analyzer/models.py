@@ -40,9 +40,9 @@ class LogFilter:
       filter:   an object that will be used to filter out the logs
     """
 
-    def __init__(self, logs, filter):
-        self.logs = logs
-        self.filter = filter
+    def __init__(self, logs: list[LogEntry], filter: object):
+        self.logs: list[LogEntry] = logs
+        self.filter: object = filter
 
 
 class AggregationResult:
@@ -54,8 +54,8 @@ class AggregationResult:
       logs:     a collection of LogEntry entries
     """
 
-    def __init__(self, logs):
-        self.logs = logs
+    def __init__(self, logs: list[LogEntry]):
+        self.logs: list[LogEntry] = logs
         self.report = {}
 
 
@@ -70,7 +70,7 @@ class PipelineConfig:
       filter:     filter to be passed through to LogFilter
     """
 
-    def __init__(self, spacer, file_type, filter):
-        self.spacer = spacer
-        self.file_type = file_type
-        self.filter = filter
+    def __init__(self, spacer: bool, file_type: str, filter: object):
+        self.spacer: bool = spacer
+        self.file_type: str = file_type
+        self.filter: object = filter
