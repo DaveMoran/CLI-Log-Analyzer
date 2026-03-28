@@ -44,6 +44,14 @@ class LogFilter:
 
 
 class AggregationResult:
+    """
+    Creates a report based on the collection of logs passed through
+
+    Parameters:
+    -----------
+      logs:     a collection of LogEntry entries
+    """
+
     def __init__(self, logs):
         self.logs = logs
         self.report = {}
