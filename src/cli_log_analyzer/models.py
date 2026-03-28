@@ -12,3 +12,9 @@ class LogEntry:
         self.source = source
         self.message = message
         self.metadata = metadata
+
+
+class LogFilter:
+    def __init__(self, logs, filter):
+        self.logs = logs
+        self.filter = filter
