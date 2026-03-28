@@ -27,3 +27,15 @@ The Aggregation Results class creates a summary of the logs that remained after 
 - list of sources
 
 This will be extendable as user cases are developed
+
+## PipelineConfig
+
+This class will be the orchestrator for the entire flow. The way this will work is:
+1. A user will call the CLI tool and supply the file to parse and some flags
+  1. --spacer: Boolean to see if we separate each log item via newline OR if there's a space between
+  2. --file-type: String to check if this is a JSON, XML, or CLF file format to be used for parsing
+  3. --filter: String formatted field=value, field to pass to our custom filter
+2. The pipeline will read the file, and create a list of lines based on the spacer
+3. Each line will be fed into the LogEntry class based on the filetype flag
+4. Then, if the filter flag was sent it will run the logs through the LogFilter class
+5. Finally, the filtered logs will be run through the AggregationResult class and the results will be printed onto the console for the user to review.
