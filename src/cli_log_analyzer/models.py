@@ -29,16 +29,13 @@ class LogEntry:
 
 class LogFilter:
     """
-    Normalizes a log entry into standardized fields so that they are easier
-    to filter and search through
+    Takes a collection of logs and returns logs that match the desired filters
+    of the user
 
     Parameters:
     -----------
-      timestamp: the date/time that the log occured
-      level:     the level of severity of the log entry
-      source:    file and line number that the log originated from
-      message:   text that was received with the log
-      metadata:  additional information to be saved along each entry
+      logs:     a collection of LogEntry entries
+      filter:   an object that will be used to filter out the logs
     """
 
     def __init__(self, logs, filter):
