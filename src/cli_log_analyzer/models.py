@@ -56,7 +56,7 @@ class AggregationResult:
 
     def __init__(self, logs: list[LogEntry]):
         self.logs: list[LogEntry] = logs
-        self.report = {}
+        self.report: object = {}
 
 
 class PipelineConfig:
