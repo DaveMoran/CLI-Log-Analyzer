@@ -41,6 +41,12 @@ This class will be the orchestrator for the entire flow. The way this will work 
 4. Then, if the filter flag was sent it will run the logs through the LogFilter class
 5. Finally, the filtered logs will be run through the AggregationResult class and the results will be printed onto the console for the user to review.
 
+#### Default class vs dataclass vs BaseModel
+For this project, we'll be utilizing a dataclass over a default class and BaseModel. The reason behind this is as follows:
+1. Learning opportunity: As we're already using classes for other parts of the project, we can experiment with the benefits that the dataclass gives us over the traditional class.
+2. Performance: Dataclasses are lightweight and performant for smaller use cases. Seeing as we will be normalizing the data that we take in a different class, we can keep the overhead for PipelineConfig light
+3. Data validation: The current implementation of this project will be to use all types of logs and make changes depending on certain test cases. Because of this, we do not need the benefit of data validation that BaseModel gives us
+
 ## Diagram
 
 ```mermaid
