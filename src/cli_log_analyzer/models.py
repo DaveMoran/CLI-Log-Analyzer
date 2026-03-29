@@ -3,8 +3,9 @@ Different datamodels used in the CLI Log Analyzer project.
 """
 
 from datetime import datetime
-
 from dateutil import parser
+
+from dataclasses import dataclass
 
 
 class LogEntry:
@@ -59,6 +60,7 @@ class AggregationResult:
         self.report: object = {}
 
 
+@dataclass
 class PipelineConfig:
     """
     Creates a report based on the collection of logs passed through
@@ -70,7 +72,6 @@ class PipelineConfig:
       filter:     filter to be passed through to LogFilter
     """
 
-    def __init__(self, spacer: bool, file_type: str, filter: object):
-        self.spacer: bool = spacer
-        self.file_type: str = file_type
-        self.filter: object = filter
+    spacer: bool
+    file_type: str
+    filter: object
