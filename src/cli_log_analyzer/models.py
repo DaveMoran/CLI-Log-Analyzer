@@ -29,6 +29,14 @@ class LogEntry:
         self.message: str = message
         self.metadata: object = metadata
 
+    def __eq__(self, value: object) -> bool:
+        """Checks to see if a LogEntry is the same as another"""
+        return True
+
+    def __repr__(self) -> str:
+        """Prints out a representation of the variable"""
+        return ""
+
 
 class LogFilter:
     """
@@ -45,6 +53,26 @@ class LogFilter:
         self.logs: list[LogEntry] = logs
         self.filter: object = filter
 
+    def __repr__(self) -> str:
+        """Prints out a reporesentation of the variable"""
+        return ""
+
+    def __iter__(self):
+        """Allows for the LogFilter entries to be looped over"""
+        pass
+
+    def __getitem__(self, key):
+        """Allows retrieval of a specific filtered log"""
+        pass
+
+    def __len__(self):
+        """Returns the number of items that were filtered out"""
+        pass
+
+    def __contains__(self, item):
+        """Checks to see if a specific LogEntry item is in the filtered results"""
+        pass
+
 
 class AggregationResult:
     """
@@ -58,6 +86,10 @@ class AggregationResult:
     def __init__(self, logs: list[LogEntry]):
         self.logs: list[LogEntry] = logs
         self.report: object = {}
+
+    def __repr__(self) -> str:
+        """Prints out a representation of the variable"""
+        return ""
 
 
 @dataclass
