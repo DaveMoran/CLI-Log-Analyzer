@@ -37,6 +37,14 @@ class LogEntry:
         """Prints out a representation of the variable"""
         return ""
 
+    def __hash__(self) -> int:
+        """Creates a hash of the LogEntry to be added to a dict"""
+        return 0
+
+    def __lt__(self, other):
+        """Checks to see if one item is less than another via hash"""
+        pass
+
 
 class LogFilter:
     """
@@ -95,7 +103,7 @@ class AggregationResult:
 @dataclass
 class PipelineConfig:
     """
-    Creates a report based on the collection of logs passed through
+    Entrypoint for the CLI operations to be used by the customer
 
     Parameters:
     -----------
